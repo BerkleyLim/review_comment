@@ -58,7 +58,7 @@ const LeftMenuList = () => {
             <ListItemIcon>
               <StarBorder/>
             </ListItemIcon>
-            <ListItemText primary="악보" onClick={() => moveRouterPath('/sheet')}/>
+            <ListItemText primary="악보" onClick={() => moveRouterPath('/sheet/1')}/>
           </ListItemButton>
           <ListItemButton sx={{pl: 4}} onClick={() => {
             alert("빠른 시일 내에 개발하겠습니다.")

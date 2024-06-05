@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'sheet',
+        path: 'sheet/:pageNo',
         element: <SheetPage />,
         errorElement: <ErrorPage />
       },
