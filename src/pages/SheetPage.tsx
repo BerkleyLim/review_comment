@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../css/sheet.module.css'
 import SheetSearchComponent from "../components/sheet/SheetSearchComponent";
 import SheetContentsComponent from "../components/sheet/SheetContentsComponent";
 import SheetViewItem from "../components/sheet/item/SheetViewItem";
 import {Pagination, Stack} from "@mui/material";
 import {useNavigate} from "react-router";
+import SheetContainer from "../hooks/SheetContainer";
 
 const SheetPage = () => {
   const navigate = useNavigate();
+  const { displayConnectSheetList } = SheetContainer();
   const [currentPage, setCurrentPage] = useState(1);
   // const totalPages = 10; // 전체 페이지 수 (10으로 설정함)
   const totalPages = 10; // 전체 페이지 수 (10으로 설정함)
@@ -18,6 +20,19 @@ const SheetPage = () => {
     navigate('/sheet/'+page);
 
   }
+
+  useEffect(() => {
+    const fetch = async () => {
+      return await displayConnectSheetList().then(
+        (res) => {
+          return res;
+        }
+      ).catch((e) => {
+        return null;
+      })
+    }
+    fetch();
+  }, [])
 
   return (
     <div className={`${styles?.sheetMusicPage}`}>
