@@ -1,23 +1,39 @@
 import {useSetRecoilState} from "recoil";
-import {isSheetDetailViewState} from "../recoil/sheetState";
+import {isSheetDetailViewState, sheetDetailState, sheetListState} from "../recoil/sheetState";
 import SheetService from "../services/SheetService";
+import SheetType from "../type/SheetType";
 
 const SheetContainer = () => {
   const { ConnectSheetList } = SheetService();
+
   const setIsSheetDetailView = useSetRecoilState(isSheetDetailViewState);
-  const handlerOpenView = () => setIsSheetDetailView(true);
+  const setSheetDetail = useSetRecoilState(sheetDetailState);
+  const handlerOpenView = (data:SheetType|null) => {
+    setIsSheetDetailView(true);
+    setSheetDetail(data);
+  }
   const handlerCloseView = () => setIsSheetDetailView(false);
 
-  const displayConnectSheetList = async () => {
-    return await ConnectSheetList().then(
+  const setSheetList = useSetRecoilState(sheetListState);
+
+  const displayConnectSheetList = async (page:number, limit:number) => {
+    const sheet = await ConnectSheetList(page, limit).then(
       (res) => {
-        return res;
+        if (!!res?.data?.data) {
+          return res.data.data;
+        } else if (!!res?.data) {
+          return res.data;
+        } else {
+          return null;
+        }
       }
     ).catch(
       (e) => {
+        console.error(e)
         return null;
       }
     )
+    setSheetList(sheet);
   }
 
   return {handlerOpenView, handlerCloseView, displayConnectSheetList}

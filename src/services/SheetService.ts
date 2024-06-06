@@ -1,11 +1,15 @@
 import axios from "axios";
 
 const SheetService = () => {
-  const ConnectSheetList = async () => {
-    return await axios.get(`http://localhost:3001/music`)
+  const ConnectSheetList = async (page:number, limit:number) => {
+    return await axios.get(`http://localhost:3001/music`, {
+      params: {
+        _page: page,
+        _limit: limit
+      }
+    })
       .then((res) => {
-        console.log(res)
-        return res;
+        return res
       })
       .catch((e) => {
         console.error(e)

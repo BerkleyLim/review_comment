@@ -1,34 +1,25 @@
 {
   "music": [
     {
-      "id": "c78e",
-      "title": "두번째 메모",
-      "contents": "두번째 메모"
-    },
+      "id": 1,
+      "password": "w1234",
+      "title": "The Lark",
+      "artist": "Glinka",
+      "contents": "이곡은 러시아의 신 낭만주의의 작품으로 종달새가 와르르...",
+      "genre": "클래식",
+      "img": "/static/images/sheet/1684322911420.jpg",
+      "releaseDate": "1894",
+      "albumName": "1",
+      "uploadDate": "2023-05-17",
+      "score": 5
+    }
+  ],
+  "comment": [
     {
-      "id": "de91",
-      "title": "두번째 메모",
-      "contents": "두번째 메모"
-    },
-    {
-      "id": "b3b7",
-      "title": "두번째 메모",
-      "contents": "두번째 메모"
-    },
-    {
-      "id": "6aff",
-      "title": "두번째 메모",
-      "contents": "두번째 메모"
-    },
-    {
-      "id": "046e",
-      "title": "두번째 메모",
-      "contents": "두번째 메모"
-    },
-    {
-      "id": "37e8",
-      "title": "두번째 메모",
-      "contents": "두번째 메모"
+      "id": 1,
+      "music_id": 1,
+      "nickName": "aaa",
+      "password": "1234"
     }
   ]
 }

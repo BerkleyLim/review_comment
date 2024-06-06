@@ -3,3 +3,44 @@
   width: 100%;
   padding: 2%
 }
+
+
+/* 악보 정보 */
+/* 상세 정보 폼*/
+/* 모달용*/
+.sheetDetail {
+  width: 100%;
+  min-height: 20vh;
+  max-height: 800px;
+  margin: 0 auto;
+  padding: 5% 5% 5% 5%;
+  background: white;
+  /*overflow: scroll;*/
+}
+
+
+/* 장르 정보 관련 */
+.commonContentDetailContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.album {
+  width: 200px;
+  height: 200px;
+}
+
+/* 장르 정보 관련 컨테이너 */
+.detailContainer {
+  margin-left: 5%;
+  font-size: 1.6em;
+  padding: 2% 0 2% 0;
+}
+
+/* 내용 출력 */
+.detailContentsComponent {
+  min-height: 30vh;
+  padding: 2% 2% 2% 2%;
+}

@@ -5,9 +5,14 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import SheetContainer from "../../../hooks/SheetContainer";
+import SheetContainer from "../../../../hooks/SheetContainer";
+import SheetType from "../../../../type/SheetType";
 
-const SheetListItem = () => {
+type SheetProps = {
+  data: SheetType | null
+}
+
+const SheetListItem = ({data}:SheetProps) => {
   const {handlerOpenView} = SheetContainer();
   return (
     <Card
@@ -17,19 +22,19 @@ const SheetListItem = () => {
       <CardMedia
         sx={{maxWidth: '100%', height: '10vh', maxHeight: 140}}
         image="/static/images/sheet/1684322911420.jpg"
-        title="Glinka"
-        className={`cursor-pointer`}
+        title="music"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          The Lark
+          {data?.title}
         </Typography>
         <Typography variant="body2" color="text.secondary" className={`text-overflow`}>
-          글린카(Glinka)가 만든 곡을 발라키레프(Balakiev)가 피아노를 편곡하여 만든 작품 중 하나, 종달새처럼 우루루 지나는 역할을 수행
+          {data?.contents}
+          {/*글린카(Glinka)가 만든 곡을 발라키레프(Balakiev)가 피아노를 편곡하여 만든 작품 중 하나, 종달새처럼 우루루 지나는 역할을 수행*/}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button className={`flex w-full justify-center`} onClick={() => handlerOpenView()}>상세보기</Button>
+        <Button className={`flex w-full justify-center`} onClick={() => handlerOpenView(data)}>상세보기</Button>
       </CardActions>
     </Card>
   );
