@@ -2,21 +2,20 @@ import React, {useEffect, useState} from 'react';
 import {Pagination, Stack} from "@mui/material";
 import {useNavigate, useParams} from "react-router";
 import {useRecoilValue} from "recoil";
-import {sheetListState} from "../../recoil/sheetState";
+import {sheetPageTotalState} from "../../recoil/sheetState";
 import SheetContainer from "../../hooks/SheetContainer";
 
 const SheetPaginationComponent = () => {
   const navigate = useNavigate();
-  const { pageNo } = useParams();
-  const params = useParams();
-  const { displayConnectSheetList } = SheetContainer();
+  const {pageNo} = useParams();
+  const {displayConnectSheetList} = SheetContainer();
   const [currentPage, setCurrentPage] = useState((Number(pageNo)));
-  const totalPages = 10; // 전체 페이지 수 (10으로 설정함)
+  const totalPages = useRecoilValue(sheetPageTotalState); // 전체 페이지 수 (default = 10으로 설정함)
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
     // 아래서부터 페이지 변경의 따른 추가 작업 가능
-    navigate('/sheet/'+page);
+    navigate('/sheet/' + page);
 
   }
 
@@ -37,7 +36,7 @@ const SheetPaginationComponent = () => {
         count={totalPages}
         page={currentPage}
         onChange={handlePageChange}
-        color="primary" />
+        color="primary"/>
     </Stack>
   );
 }

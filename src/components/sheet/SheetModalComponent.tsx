@@ -6,14 +6,15 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import { useRecoilValue } from "recoil";
-import { isSheetDetailViewState, sheetDetailState } from "../../recoil/sheetState";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import {useRecoilValue} from "recoil";
 import SheetContainer from "../../hooks/SheetContainer";
-import styles from '../../css/sheet.module.css'
 import SheetType from "../../type/SheetType";
-import { Button, Container, Grid, Paper, Rating, TextField } from "@mui/material";
-import SheetDetailForm from "./item/form/SheetDetailForm";
 import SheetReviewComment from "./item/form/SheetReviewComment";
+import {isSheetDetailViewState, sheetDetailState} from "../../recoil/sheetState";
+import SheetDetailForm from "./item/form/SheetDetailForm";
+import SheetDetailPreview from "./item/form/SheetDetailPreview";
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -40,9 +41,15 @@ const contentStyle = {
   overflowY: 'auto',
 };
 
+const buttonContainerStyle = {
+  display: 'flex',
+  justifyContent: 'flex-end',
+  marginBottom: '10px',
+};
+
 const SheetModalComponent = () => {
   const isSheetDetailView = useRecoilValue(isSheetDetailViewState);
-  const { handlerCloseView } = SheetContainer();
+  const {handlerCloseView} = SheetContainer();
   const sheetDetail = useRecoilValue<SheetType | null>(sheetDetailState);
 
   return (
@@ -52,7 +59,7 @@ const SheetModalComponent = () => {
       open={isSheetDetailView}
       onClose={handlerCloseView}
       closeAfterTransition
-      slots={{ backdrop: Backdrop }}
+      slots={{backdrop: Backdrop}}
       slotProps={{
         backdrop: {
           timeout: 500,
@@ -66,12 +73,23 @@ const SheetModalComponent = () => {
               {sheetDetail?.artist} - {sheetDetail?.title}
             </Typography>
             <IconButton aria-label="close" onClick={handlerCloseView}>
-              <CloseIcon />
+              <CloseIcon/>
             </IconButton>
           </Box>
           <Box sx={contentStyle}>
-            <SheetDetailForm />
-            <SheetReviewComment />
+            <Box sx={buttonContainerStyle}>
+              <IconButton aria-label="edit">
+                <EditIcon />
+                <Typography>수정</Typography>
+              </IconButton>
+              <IconButton aria-label="delete">
+                <DeleteIcon />
+                <Typography>삭제</Typography>
+              </IconButton>
+            </Box>
+            <SheetDetailPreview/>
+            {/*<SheetDetailForm/>*/}
+            <SheetReviewComment/>
           </Box>
         </Box>
       </Fade>

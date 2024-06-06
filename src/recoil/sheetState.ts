@@ -16,3 +16,13 @@ export const sheetDetailState = atom({
   key: 'sheetDetail',
   default: {} as SheetType | null
 })
+
+export const sheetPageLengthState = atom({
+  key: 'sheetPageLength',
+  default: 1
+})
+
+export const sheetPageTotalState = atom({
+  key: 'sheetPageTotal',
+  default: 10
+})

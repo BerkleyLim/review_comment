@@ -1,5 +1,5 @@
 import {useSetRecoilState} from "recoil";
-import {isSheetDetailViewState, sheetDetailState, sheetListState} from "../recoil/sheetState";
+import {isSheetDetailViewState, sheetDetailState, sheetListState, sheetPageTotalState} from "../recoil/sheetState";
 import SheetService from "../services/SheetService";
 import SheetType from "../type/SheetType";
 
@@ -15,6 +15,7 @@ const SheetContainer = () => {
   const handlerCloseView = () => setIsSheetDetailView(false);
 
   const setSheetList = useSetRecoilState(sheetListState);
+  const setSheetPageTotal = useSetRecoilState(sheetPageTotalState);
 
   const displayConnectSheetList = async (page:number, limit:number) => {
     return await ConnectSheetList(page, limit).then(
@@ -22,8 +23,7 @@ const SheetContainer = () => {
         console.log(res)
         if(!!res?.data?.data) {
           setSheetList(res?.data?.data)
-        } else {
-          setSheetList([])
+          setSheetPageTotal(res?.data.last)
         }
       }
     ).catch(
