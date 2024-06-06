@@ -9,7 +9,7 @@ export const isSheetDetailViewState = atom({
 
 export const sheetListState = atom({
   key: 'sheetList',
-  default: [],
+  default: [] as SheetType[] | [],
 })
 
 export const sheetDetailState = atom({

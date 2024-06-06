@@ -17,23 +17,20 @@ const SheetContainer = () => {
   const setSheetList = useSetRecoilState(sheetListState);
 
   const displayConnectSheetList = async (page:number, limit:number) => {
-    const sheet = await ConnectSheetList(page, limit).then(
+    return await ConnectSheetList(page, limit).then(
       (res) => {
-        if (!!res?.data?.data) {
-          return res.data.data;
-        } else if (!!res?.data) {
-          return res.data;
+        console.log(res)
+        if(!!res?.data?.data) {
+          setSheetList(res?.data?.data)
         } else {
-          return null;
+          setSheetList([])
         }
       }
     ).catch(
       (e) => {
         console.error(e)
-        return null;
       }
     )
-    setSheetList(sheet);
   }
 
   return {handlerOpenView, handlerCloseView, displayConnectSheetList}

@@ -5,7 +5,7 @@ const SheetService = () => {
     return await axios.get(`http://localhost:3001/music`, {
       params: {
         _page: page,
-        _limit: limit
+        _per_page: limit
       }
     })
       .then((res) => {
