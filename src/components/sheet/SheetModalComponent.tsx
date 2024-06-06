@@ -12,7 +12,7 @@ import {useRecoilValue} from "recoil";
 import SheetContainer from "../../hooks/SheetContainer";
 import SheetType from "../../type/SheetType";
 import SheetReviewCommentForm from "./item/form/SheetReviewCommentForm";
-import {isSheetDetailViewState, sheetDetailState} from "../../recoil/sheetState";
+import {isModalEditModeState, isSheetDetailViewState, sheetDetailState} from "../../recoil/sheetState";
 import SheetDetailForm from "./item/form/SheetDetailForm";
 import SheetDetailPreview from "./item/form/SheetDetailPreview";
 import SheetReviewCommentList from "./item/form/SheetReviewCommentList";
@@ -53,6 +53,7 @@ const SheetModalComponent = () => {
   const {handlerCloseView} = SheetContainer();
   const sheetDetail = useRecoilValue<SheetType | null>(sheetDetailState);
 
+  const isModalEditMode = useRecoilValue(isModalEditModeState);
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -68,33 +69,63 @@ const SheetModalComponent = () => {
       }}
     >
       <Fade in={isSheetDetailView}>
-        <Box sx={modalStyle}>
-          <Box sx={headerStyle}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              {sheetDetail?.artist} - {sheetDetail?.title}
-            </Typography>
-            <IconButton aria-label="close" onClick={handlerCloseView}>
-              <CloseIcon/>
-            </IconButton>
-          </Box>
-          <Box sx={contentStyle}>
-            <Box sx={buttonContainerStyle}>
-              <IconButton aria-label="edit">
-                <EditIcon />
-                <Typography>수정</Typography>
-              </IconButton>
-              <IconButton aria-label="delete">
-                <DeleteIcon />
-                <Typography>삭제</Typography>
-              </IconButton>
-            </Box>
-            <SheetDetailPreview/>
-            {/*<SheetDetailForm/>*/}
+        {
+          isModalEditMode ?
+            <Box sx={modalStyle}>
+              <Box sx={headerStyle}>
+                <Typography id="transition-modal-title" variant="h6" component="h2">
+                  {sheetDetail?.artist} - {sheetDetail?.title}
+                </Typography>
+                <IconButton aria-label="close" onClick={handlerCloseView}>
+                  <CloseIcon/>
+                </IconButton>
+              </Box>
 
-            <SheetReviewCommentList />
-            <SheetReviewCommentForm/>
-          </Box>
-        </Box>
+              <Box sx={contentStyle}>
+                <Box sx={buttonContainerStyle}>
+                  <IconButton aria-label="add">
+                    <EditIcon />
+                    <Typography>추가</Typography>
+                  </IconButton>
+                  <IconButton aria-label="cancel">
+                    <DeleteIcon />
+                    <Typography>취소</Typography>
+                  </IconButton>
+                </Box>
+                <SheetDetailForm/>
+              </Box>
+            </Box>
+            :
+            <Box sx={modalStyle}>
+              <Box sx={headerStyle}>
+                <Typography id="transition-modal-title" variant="h6" component="h2">
+                  {sheetDetail?.artist} - {sheetDetail?.title}
+                </Typography>
+                <IconButton aria-label="close" onClick={handlerCloseView}>
+                  <CloseIcon/>
+                </IconButton>
+              </Box>
+
+              <Box sx={contentStyle}>
+                <Box sx={buttonContainerStyle}>
+                  <IconButton aria-label="edit">
+                    <EditIcon />
+                    <Typography>수정</Typography>
+                  </IconButton>
+                  <IconButton aria-label="delete">
+                    <DeleteIcon />
+                    <Typography>삭제</Typography>
+                  </IconButton>
+                </Box>
+                <SheetDetailPreview/>
+                {/*<SheetDetailForm/>*/}
+
+                <SheetReviewCommentForm/>
+
+                <SheetReviewCommentList />
+              </Box>
+            </Box>
+        }
       </Fade>
     </Modal>
   );
