@@ -11,10 +11,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {useRecoilValue} from "recoil";
 import SheetContainer from "../../hooks/SheetContainer";
 import SheetType from "../../type/SheetType";
-import SheetReviewComment from "./item/form/SheetReviewComment";
+import SheetReviewCommentForm from "./item/form/SheetReviewCommentForm";
 import {isSheetDetailViewState, sheetDetailState} from "../../recoil/sheetState";
 import SheetDetailForm from "./item/form/SheetDetailForm";
 import SheetDetailPreview from "./item/form/SheetDetailPreview";
+import SheetReviewCommentList from "./item/form/SheetReviewCommentList";
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -89,7 +90,9 @@ const SheetModalComponent = () => {
             </Box>
             <SheetDetailPreview/>
             {/*<SheetDetailForm/>*/}
-            <SheetReviewComment/>
+
+            <SheetReviewCommentList />
+            <SheetReviewCommentForm/>
           </Box>
         </Box>
       </Fade>

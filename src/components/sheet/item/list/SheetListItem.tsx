@@ -16,7 +16,7 @@ const SheetListItem = ({data}:SheetProps) => {
   const {handlerOpenView} = SheetContainer();
   return (
     <Card
-      sx={{width: '20%', maxWidth: 200, height: '30vh', maxHeight: 300}}
+      sx={{width: '100%', maxWidth: 200, height: '30vh', maxHeight: 350}}
       className={`relative my-5 mx-5`}
     >
       <CardMedia

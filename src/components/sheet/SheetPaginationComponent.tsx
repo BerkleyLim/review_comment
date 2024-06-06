@@ -30,14 +30,16 @@ const SheetPaginationComponent = () => {
     fetch();
   }, [pageNo]);
   return (
-    <Stack spacing={2}>
-      {/*<Pagination count={10} color="primary" />*/}
-      <Pagination
-        count={totalPages}
-        page={currentPage}
-        onChange={handlePageChange}
-        color="primary"/>
-    </Stack>
+    <div className={`flex justify-center`}>
+      <Stack spacing={2}>
+        {/*<Pagination count={10} color="primary" />*/}
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"/>
+      </Stack>
+    </div>
   );
 }
 

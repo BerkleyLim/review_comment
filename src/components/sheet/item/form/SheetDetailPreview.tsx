@@ -17,7 +17,7 @@ const SheetDetailPreview = () => {
             <div className="">장르 : {sheetDetail?.genre}</div>
             <div className="">발매날짜 : {sheetDetail?.releaseDate}년</div>
             <div className="">앨범명 : {sheetDetail?.albumName}</div>
-            <div className="">전체 평점 : <Rating name="read-only" value={2.5} precision={0.1} readOnly /> ({2.5}점)</div>
+            <div className="">전체 평점 : <Rating name="read-only" value={sheetDetail?.score} precision={0.1} readOnly /> ({sheetDetail?.score}점)</div>
           </div>
         </div>
         <div className={`${styles?.detailContentsComponent}`}>

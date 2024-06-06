@@ -279,7 +279,8 @@
       "id": "1",
       "music_id": 1,
       "nickName": "aaa",
-      "password": "1234"
+      "password": "1234",
+      "score": 3.5
     }
   ]
 }
